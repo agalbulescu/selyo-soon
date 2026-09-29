@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SELYO — Book a desk by the hour</title>
+<meta name="description" content="Desks, meeting rooms and studios near you, for an hour or a day. SELYO is opening soon.">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html,body{margin:0;background:var(--surface-soft)}
+a{color:var(--text-heading)}a:hover{color:var(--text-body)}
+@keyframes rise{from{transform:scale3d(1,1,.01)}to{transform:scale3d(1,1,1)}}
+@keyframes bob{0%,100%{transform:translateZ(0)}50%{transform:translateZ(3px)}}
+@keyframes markerBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.page{position:relative;min-height:100vh;overflow:hidden;background:var(--surface-soft);font-family:var(--font-core);color:var(--text-heading);display:flex;flex-direction:column}
+.scene{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.pill{color:var(--text-muted);background:var(--surface-soft);padding:4px 10px;border-radius:var(--radius-full)}
+header{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px clamp(20px,5vw,80px)}
+.wordmark{font-size:22px;font-weight:var(--weight-bold);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-primary);line-height:1}
+main{position:relative;flex:1;padding:clamp(8px,4vh,48px) clamp(12px,5vw,80px)}
+.card{display:flex;flex-direction:column;gap:16px;max-width:420px;padding:24px;margin-left:-24px;background:var(--surface-soft);border-radius:var(--radius-md);animation:fadeUp 600ms var(--ease-standard) both}
+h1{font-size:28px;line-height:1.2;font-weight:700;letter-spacing:-0.4px;text-wrap:pretty}
+.lede{font-size:16px;line-height:1.5;color:var(--text-body)}
+form{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+form[hidden]{display:none}
+input{flex:1 1 200px;min-width:0;height:48px;padding:0 14px;border:1px solid var(--border-hairline);border-radius:var(--radius-input);background:var(--canvas);font:inherit;font-size:16px;color:var(--text-heading);outline:none}
+input:focus{border:2px solid var(--border-focus);padding:0 13px}
+/* DS Button, variant="secondary" size="md" */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:var(--control-height-md);padding:13px 23px;border-radius:var(--radius-button);border:1px solid var(--text-heading);background:var(--canvas);color:var(--text-heading);font-family:var(--font-core);font-size:var(--text-body-md);font-weight:var(--weight-medium);line-height:var(--leading-snug);cursor:pointer;transition:var(--transition-hover)}
+.btn:hover{background:var(--surface-soft)}
+.error{font-size:14px;color:var(--text-error)}
+.btn:disabled{color:var(--text-disabled);border-color:var(--border-strong);cursor:progress}
+.thanks{margin-top:8px;font-size:16px;line-height:1.5;color:var(--text-heading)}
+footer{position:relative;padding:24px clamp(20px,5vw,80px)}
+footer .pill{font-size:13px;margin-left:-10px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="scene" id="scene" aria-hidden="true"></div>
+  <header>
+    <span class="wordmark">Selyo</span>
+    <span class="pill" style="font-size:14px">Opening soon</span>
+  </header>
+  <main>
+    <section class="card">
+      <h1>Book a desk by the hour</h1>
+      <p class="lede">Desks, meeting rooms and studios near you, for an hour or a day. SELYO is almost ready — leave your email and we’ll tell you when it opens.</p>
+      <!-- Kit (kit.com) form id: Kit → Grow → Landing Pages & Forms → your form → Embed → the number in the form's action URL -->
+      <form id="notify" data-kit-form="9978330">
+        <input type="email" name="email_address" required placeholder="Email address" aria-label="Email address" autocomplete="email">
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+      <p class="error" id="error" role="alert" hidden>Something went wrong. Please try again.</p>
+      <p class="thanks" id="thanks" hidden>Thanks. We’ll email <span id="sent-to"></span> when SELYO opens.</p>
+    </section>
+  </main>
+  <footer><span class="pill">© 2026 SELYO</span></footer>
+</div>
+<script>
+document.getElementById('notify').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target, btn = form.querySelector('button'), error = document.getElementById('error');
+  btn.disabled = true;
+  error.hidden = true;
+  try {
+    const res = await fetch(`https://app.kit.com/forms/${form.dataset.kitForm}/subscriptions`, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    // Kit replies 200 even on failure; the outcome is in `status`
+    if ((await res.json()).status !== 'success') throw new Error('kit');
+    document.getElementById('sent-to').textContent = form.email_address.value;
+    form.hidden = true;
+    document.getElementById('thanks').hidden = false;
+  } catch {
+    error.hidden = false;
+    btn.disabled = false;
+  }
+});
+</script>
+<script src="scene.js"></script>
+</body>
+</html>

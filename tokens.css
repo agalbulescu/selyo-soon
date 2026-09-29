@@ -1,0 +1,191 @@
+/* SELYO design system tokens — copied verbatim from the claude.ai/design
+   project (_ds/selyo-design-system/tokens/*.css). Edit there, then re-copy. */
+
+/* fonts.css — Figtree stands in for the licensed Airbnb Cereal VF. */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+
+:root{
+  --font-core:"Figtree",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --font-display:var(--font-core);
+  --font-body:var(--font-core);
+  --font-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+
+/* colors.css */
+:root{
+  /* Brand — single accent voltage */
+  --amber-500:#d97706;
+  --amber-600:#b45309;
+  --amber-100:#fbdcb4;
+  --amber-050:#fdf6ec;
+
+  /* Sub-brand accents (scoped to named programs only) */
+  --indigo-deep:#31237a;
+  --clay-deep:#8a3417;
+
+  /* Ink ramp */
+  --ink-900:#1f1f1f;
+  --ink-700:#3f3f3f;
+  --ink-500:#6a6a6a;
+  --ink-400:#929292;
+
+  /* Lines */
+  --line-300:#c1c1c1;
+  --line-200:#dddddd;
+  --line-100:#ebebeb;
+
+  /* Neutrals / surfaces */
+  --white:#ffffff;
+  --gray-050:#f7f7f7;
+  --gray-100:#f2f2f2;
+  --gray-200:#e6e6e6;
+  --black:#000000;
+
+  /* Semantic */
+  --red-600:#c13515;
+  --red-700:#b32505;
+  --green-600:#0f7b5a;
+  --blue-500:#428bff;
+
+  /* ————— Semantic aliases: the API surface ————— */
+  --brand-primary:var(--amber-500);
+  --brand-primary-active:var(--amber-600);
+  --brand-primary-disabled:var(--amber-100);
+  --brand-primary-wash:var(--amber-050);
+  --brand-luxe:var(--indigo-deep);
+  --brand-studio:var(--clay-deep);
+
+  --canvas:var(--white);
+  --surface-card:var(--white);
+  --surface-soft:var(--gray-050);
+  --surface-strong:var(--gray-100);
+  --surface-placeholder:var(--gray-200);
+
+  --text-heading:var(--ink-900);
+  --text-body:var(--ink-700);
+  --text-muted:var(--ink-500);
+  --text-disabled:var(--ink-400);
+  --text-on-primary:var(--white);
+  --text-on-dark:var(--white);
+  --text-rating:var(--ink-900);
+  --text-error:var(--red-600);
+  --text-error-hover:var(--red-700);
+  --text-success:var(--green-600);
+  --text-legal-link:var(--blue-500);
+
+  --border-hairline:var(--line-200);
+  --border-hairline-soft:var(--line-100);
+  --border-strong:var(--line-300);
+  --border-focus:var(--ink-900);
+
+  --scrim:rgba(0,0,0,.5);
+}
+
+/* typography.css */
+:root{
+  --text-rating-size:64px;
+  --text-display-xl:28px;
+  --text-display-lg:22px;
+  --text-display-md:21px;
+  --text-display-sm:20px;
+  --text-title:16px;
+  --text-body-md:16px;
+  --text-body-sm:14px;
+  --text-caption:14px;
+  --text-caption-sm:13px;
+  --text-micro:12px;
+  --text-badge:11px;
+  --text-tag:8px;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  --leading-rating:1.1;
+  --leading-tight:1.18;
+  --leading-snug:1.25;
+  --leading-normal:1.43;
+  --leading-relaxed:1.5;
+
+  --tracking-rating:-1px;
+  --tracking-display-lg:-.44px;
+  --tracking-display-sm:-.18px;
+  --tracking-none:0;
+  --tracking-tag:.32px;
+}
+
+/* spacing.css */
+:root{
+  --space-xxs:2px;
+  --space-xs:4px;
+  --space-sm:8px;
+  --space-md:12px;
+  --space-base:16px;
+  --space-lg:24px;
+  --space-xl:32px;
+  --space-xxl:48px;
+  --space-section:64px;
+
+  --container-editorial:1280px;
+  --container-detail:1080px;
+  --container-wide:1440px;
+  --gutter-card:16px;
+  --gutter-column:24px;
+  --page-inline:80px;
+
+  --control-height-md:48px;
+  --control-height-sm:40px;
+  --control-height-xs:32px;
+  --input-height:56px;
+  --nav-height:80px;
+  --searchbar-height:64px;
+  --day-cell:40px;
+}
+
+/* radius.css */
+:root{
+  --radius-none:0px;
+  --radius-xs:4px;
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:20px;
+  --radius-xl:32px;
+  --radius-full:9999px;
+
+  --radius-button:var(--radius-sm);
+  --radius-input:var(--radius-sm);
+  --radius-card:var(--radius-md);
+  --radius-photo:var(--radius-md);
+  --radius-pill:var(--radius-full);
+  --radius-sheet:var(--radius-lg);
+}
+
+/* elevation.css — one tier, plus flat. */
+:root{
+  --shadow-none:none;
+  --shadow-float:rgba(0,0,0,.02) 0 0 0 1px,rgba(0,0,0,.04) 0 2px 6px 0,rgba(0,0,0,.1) 0 4px 8px 0;
+  --shadow-overlay:var(--shadow-float);
+}
+
+/* motion.css */
+:root{
+  --duration-instant:80ms;
+  --duration-fast:150ms;
+  --duration-base:220ms;
+  --duration-slow:400ms;
+  --ease-standard:cubic-bezier(.2,0,.2,1);
+  --ease-out:cubic-bezier(0,0,.2,1);
+  --ease-in-out:cubic-bezier(.4,0,.2,1);
+  --transition-hover:box-shadow var(--duration-base) var(--ease-standard),background-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard);
+}
+
+/* base.css */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--text-heading);font-family:var(--font-body);font-size:var(--text-body-md);line-height:var(--leading-relaxed);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+h1,h2,h3,h4,p{margin:0}
+a{color:var(--text-heading);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--border-focus);outline-offset:2px}
+img{display:block;max-width:100%}
